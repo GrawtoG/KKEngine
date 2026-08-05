@@ -6,11 +6,14 @@
 #define KKENGINE_RENDERER_HXX
 
 //ogolna klasa dla wszelkiej masci rendererow typu sprite renderer czy mesh renderer
+
+#include "../core/Component.hxx"
 namespace kk
 {
-    class Renderer {
+    class Renderer:public Component {
     public:
-        void Render();
+        [[nodiscard]] std::string ToString() const override {return "Renderer";};
+        virtual void Render();
     };
 
 }

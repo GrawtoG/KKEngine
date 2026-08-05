@@ -10,29 +10,65 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include "Scene.hxx"
+#include "GameObject.hxx"
+namespace kk
+{
+    class Engine {
+    private:
+        Scene* currentScene;
+        float deltaTime = 0.0f;
 
-class Engine {
-public:
-    void Run() {
-        InitWindow(800, 600, "Mój Silnik");
-        SetTargetFPS(60);
+    public:
 
-        while (!WindowShouldClose()) {
-            float deltaTime = GetFrameTime(); // czas między klatkami
-            Update(deltaTime);
-            Render();
+        void SetFPS(const int fps) {SetTargetFPS(fps);}
+
+        void changeScene(Scene*  scene)
+        {
+            currentScene = scene;
+            //hm jedyne co moge teraz wymyslec to goto na poczatek glownej petli xddd
+            // TODO jak zmienic ladnie scene
+        };
+
+        GameObject* createGameObject(std::string name)
+        {
+            GameObject* obj = new GameObject(std::move(name));
+            return obj;
         }
-        CloseWindow();
-    }
-private:
-    void Update(float dt) { /* aktualizacja logiki */ }
-    void Render() {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        // rysowanie
-        EndDrawing();
-    }
-};
 
+        Scene* createScene()
+        {
+            Scene* scene = new Scene();
+            return scene;
+        }
+        void Run(int screenWidth, int screenHeight, std::string Title) {
 
+            InitWindow(screenWidth, screenHeight, "Poprawny Silnik Komponentowy");
+            SetTargetFPS(60);
+
+            // --- Główna pętla ---
+            while (!WindowShouldClose()) {
+                deltaTime = GetFrameTime();
+
+                currentScene->Update(deltaTime);
+                currentScene->Render();
+
+                BeginDrawing();
+                ClearBackground(RAYWHITE);
+
+                currentScene->Render();
+                for (auto& obj : currentScene->GetAllObjects())
+                {
+                    std::cout << *obj << std::endl;
+                }
+                DrawText(TextFormat("FPS: %d", GetFPS()), 10, 10, 20, DARKGRAY);
+                DrawText("Steruj strzalkami", 10, 40, 20, DARKGRAY);
+
+                EndDrawing();
+            }
+
+            CloseWindow();
+        }
+    };
+}
 #endif //KKENGINE_ENGINE_HXX

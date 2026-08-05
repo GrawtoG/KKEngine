@@ -32,6 +32,9 @@ add_executable(KKEngine main.cpp
         src/components/Transform.hxx
         src/components/Renderer.cpp
         src/components/Renderer.hxx
+        src/components/MeshRenderer.hxx
+        include/Components.hxx
+        src/components/OutputObjects.hxx
 
 )
 target_link_libraries(KKEngine PRIVATE raylib)

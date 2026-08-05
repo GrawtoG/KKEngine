@@ -10,20 +10,29 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include "GameObject.hxx"
+
 
 namespace kk
 {
+    class GameObject;
+
     class Component {
     public:
-        GameObject* gameObject = nullptr;
+        GameObject* owner = nullptr;
         virtual ~Component() = default;
 
         void Start() {} //hapens once at the start
         void Update(float dt) {} //happens everyframe
         void Awake() {} //happens everytime component is activated
 
+        [[nodiscard]] virtual std::string ToString() const = 0;
+
     };
+
+    inline std::ostream& operator<<(std::ostream& os, const Component& c)
+    {
+        return os << c.ToString();
+    }
 }
 
 
