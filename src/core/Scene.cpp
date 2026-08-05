@@ -15,6 +15,10 @@ namespace kk
         for (auto& obj : objects) obj->Update(dt);
     }
 
+    void Scene::LateUpdate(float dt) {
+         for (auto& obj : objects) obj->LateUpdate(dt);
+     }
+
     void Scene::Start() {
          for (auto& obj : objects) obj->Start();
      }

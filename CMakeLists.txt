@@ -35,6 +35,9 @@ add_executable(KKEngine main.cpp
         src/components/MeshRenderer.hxx
         include/Components.hxx
         src/components/OutputObjects.hxx
+        src/components/Rigidbody.cpp
+        src/components/Rigidbody.hxx
+        src/core/helpers.hxx
 
 )
 target_link_libraries(KKEngine PRIVATE raylib)

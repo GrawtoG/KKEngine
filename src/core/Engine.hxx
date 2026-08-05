@@ -44,7 +44,7 @@ namespace kk
         void Run(int screenWidth, int screenHeight, std::string Title) {
 
             InitWindow(screenWidth, screenHeight, Title.c_str());
-            SetTargetFPS(60);
+            SetTargetFPS(999999999);
 
             // --- Główna pętla ---
             while (!WindowShouldClose()) {

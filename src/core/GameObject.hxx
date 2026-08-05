@@ -102,20 +102,26 @@ namespace kk
         }
 
         void Update(float dt) {
-
             if (!active) return;
             for (auto& comp : components) {
                 comp->Update(dt);
 
             }
         }
-
         void Start()
         {
             for (auto& comp : components) {
                 comp->Start();
             }
         }
+        void LateUpdate(float dt)
+        {
+            for (auto& comp : components)
+            {
+                comp->LateUpdate(dt);
+            }
+        }
+
         void Render() {
             if (!active) return;
             for (Renderer* rend : renderers) {

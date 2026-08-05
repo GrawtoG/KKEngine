@@ -21,9 +21,20 @@ namespace kk
         GameObject* owner = nullptr;
         virtual ~Component() = default;
 
-        virtual void Start() {} //hapens once at the start
-        virtual void Update(float dt){} //happens everyframe
-        virtual void Awake(){} //happens everytime component is activated
+        virtual void Awake(){}
+        virtual void OnEnable(){}
+        virtual void Start() {}
+        virtual void FixedUpdate(float dt){}
+        virtual void Update(float dt){}
+        virtual void LateUpdate(float dt){}
+        virtual void OnDisable(){};
+        virtual void OnDestroy(){};
+
+        virtual void OnCollisionEnter(){};
+        virtual void OnCollisionExit(){};
+        virtual void OnCollisionStay(){};
+
+
 
         [[nodiscard]] virtual std::string ToString() const = 0;
 

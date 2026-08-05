@@ -25,25 +25,21 @@ namespace kk
         void setScale(const Vector3& scale);
 
         [[nodiscard]] Vector3 getPosition() const {return position;};
-        [[nodiscard]] Vector3 getRotation() const {return rotationEuler;};
-        [[nodiscard]] Quaternion getRotationQ() const {return rotationQuaternion;};
+        [[nodiscard]] Vector3 getRotationEuler() const {return QuaternionToEuler(rotation);};
+        [[nodiscard]] Quaternion getRotation() const {return rotation;};
         [[nodiscard]] Vector3 getScale() const {return scale;};
 
         [[nodiscard]] Matrix GetMatrix() const {
             Matrix t = MatrixTranslate(position.x, position.y, position.z);
-            Matrix r = QuaternionToMatrix(rotationQuaternion);
+            Matrix r = QuaternionToMatrix(rotation);
             Matrix s = MatrixScale(scale.x, scale.y, scale.z);
 
             return MatrixMultiply(MatrixMultiply(t, r), s);
         }
     private:
         Vector3 position{0.0f, 0.0f, 0.0f};
-        Vector3 rotationEuler{0.0f, 0.0f, 0.0f};
+        Quaternion rotation = QuaternionIdentity();
         Vector3 scale{1.0f, 1.0f, 1.0f};
-
-        Quaternion rotationQuaternion{ 0, 0, 0, 1 };
-
-
     };
 }
 

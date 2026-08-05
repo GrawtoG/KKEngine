@@ -30,8 +30,11 @@ namespace kk
         }
 
 
+        void LateUpdate(float dt);
         void Update(float dt);
         void Start();
+
+
         void Render();
 
         GameObject* createGameObject(std::string name);
@@ -57,6 +60,13 @@ namespace kk
 
     private:
         std::vector<GameObject*> objects = std::vector<GameObject*>();
+
+
+        std::vector<GameObject*> funcUpdateRegistry = std::vector<GameObject*>();
+        std::vector<GameObject*> funcLateUpdateRegistry = std::vector<GameObject*>();
+        std::vector<GameObject*> funcStartRegistry = std::vector<GameObject*>();
+
+
         std::unordered_map<std::string, GameObject*> nameRegistry = std::unordered_map<std::string, GameObject*>();
         std::unordered_map<std::string, std::vector<GameObject*>> tagRegistry = std::unordered_map<std::string, std::vector<GameObject*>>();
 
