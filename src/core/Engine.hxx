@@ -43,7 +43,7 @@ namespace kk
         }
         void Run(int screenWidth, int screenHeight, std::string Title) {
 
-            InitWindow(screenWidth, screenHeight, "Poprawny Silnik Komponentowy");
+            InitWindow(screenWidth, screenHeight, Title.c_str());
             SetTargetFPS(60);
 
             // --- Główna pętla ---
@@ -57,10 +57,10 @@ namespace kk
                 ClearBackground(RAYWHITE);
 
                 currentScene->Render();
-                for (auto& obj : currentScene->GetAllObjects())
-                {
-                    std::cout << *obj << std::endl;
-                }
+                // for (auto& obj : currentScene->GetAllObjects())
+                // {
+                //     std::cout << *obj << std::endl;
+                // }
                 DrawText(TextFormat("FPS: %d", GetFPS()), 10, 10, 20, DARKGRAY);
                 DrawText("Steruj strzalkami", 10, 40, 20, DARKGRAY);
 

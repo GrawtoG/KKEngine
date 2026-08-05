@@ -21,9 +21,9 @@ namespace kk
         GameObject* owner = nullptr;
         virtual ~Component() = default;
 
-        void Start() {} //hapens once at the start
-        void Update(float dt) {} //happens everyframe
-        void Awake() {} //happens everytime component is activated
+        virtual void Start() {} //hapens once at the start
+        virtual void Update(float dt){} //happens everyframe
+        virtual void Awake(){} //happens everytime component is activated
 
         [[nodiscard]] virtual std::string ToString() const = 0;
 

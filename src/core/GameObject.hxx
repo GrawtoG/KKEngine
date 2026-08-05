@@ -56,10 +56,15 @@ namespace kk
         bool isActive() const { return active; }
         void setActive(const bool _active)
         {
-            this->active = _active;
-            for (auto& comp : components) {
-                comp->Awake();
+            if (active == false && _active == true)
+            {
+                for (auto& comp : components) {
+                    comp->Awake();
+                }
             }
+            this->active = _active;
+
+
         }
 
 
@@ -97,9 +102,11 @@ namespace kk
         }
 
         void Update(float dt) {
+
             if (!active) return;
             for (auto& comp : components) {
                 comp->Update(dt);
+
             }
         }
 

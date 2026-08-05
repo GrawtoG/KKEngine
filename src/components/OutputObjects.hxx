@@ -15,13 +15,15 @@ namespace kk
         OutputObjects() = default;
         void Update(float dt)
         {
-            std::cout<<"OutputObjectasds";
             static float elapsedTime = 0.0f;
             elapsedTime += dt;
             if (elapsedTime > 1.0f)
             {
+                for (auto& component : owner->scene->GetAllObjects())
+                {
+                    std::cout<<component->ToString()<<std::endl;
+                }
                 elapsedTime = 0.0f;
-                std::cout<<elapsedTime<<std::endl;
             }
         };
 

@@ -14,7 +14,7 @@ int main() {
       kk::Scene* scene = engine.createScene();
       engine.changeScene(scene);
       scene->AddObject(TM);
-
+      TM->setActive(true);
       engine.Run(800,800,"Agrest");
       return 0;
 }
